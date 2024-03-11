@@ -66,7 +66,7 @@ export default async function ({ params }) {
   return (
     <div>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <div className="flex justify-between items-end">
+        <div className="flex lg:flex-col lg:justify-center lg:items-center md:justify-between items-end gap-2">
           <div className="text-4xl font-bold">Summary</div>
           <div className="flex gap-2">
             <Link
@@ -112,7 +112,7 @@ export default async function ({ params }) {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-3 mt-4 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-2">
           <Results
             value={calculateIQ({
               correct: result,
