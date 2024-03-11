@@ -15,13 +15,13 @@ export default function Login({ searchParams }) {
       provider: "google",
       options: {
         redirectTo: searchParams.testId
-          ? "https://iqtest-tawny.vercel.app/" +
+          ? location.origin +
             "/auth/callback" +
             "?test=" +
             searchParams.testId +
             "&next=/payment?test=" +
             searchParams.testId
-          : "https://iqtest-tawny.vercel.app/" + "/auth/callback" + "?test=" + searchParams.testId,
+          : location.origin + "/auth/callback" + "?test=" + searchParams.testId,
       },
     });
   };

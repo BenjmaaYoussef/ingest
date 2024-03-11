@@ -45,10 +45,10 @@ export async function GET(request) {
         console.log(profile);
       }
 
-      return NextResponse.redirect(`https://iqtest-tawny.vercel.app${next}`);
+      return NextResponse.redirect(`${origin}${next}`);
     }
   }
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`https://iqtest-tawny.vercel.app/auth/auth-code-error`);
+  return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }
