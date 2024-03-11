@@ -10,6 +10,7 @@ export default function Login({ searchParams }) {
   const router = useRouter();
   const supabase = createClient();
   const handleLoginWithOAuth = () => {
+    console.log(location.origin)
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
