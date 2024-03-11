@@ -3,8 +3,12 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "../utils/client";
+import { useSearchParams } from 'next/navigation'
+
 
 export default function Login({ searchParams }) {
+  const searchParams = useSearchParams()
+  const testId = searchParams.get('testId')
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -14,14 +18,14 @@ export default function Login({ searchParams }) {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: searchParams.testId
+        redirectTo: testId
           ? location.origin +
             "/auth/callback" +
             "?test=" +
-            searchParams.testId +
+            testId +
             "&next=/payment?test=" +
-            searchParams.testId
-          : location.origin + "/auth/callback" + "?test=" + searchParams.testId,
+            testId
+          : location.origin + "/auth/callback" + "?test=" + testId,
       },
     });
   };
