@@ -6,7 +6,7 @@ import { createClient } from "../utils/client";
 import { useSearchParams } from 'next/navigation'
 
 
-export default function Login({ searchParams }) {
+export default function Login() {
   const searchParams = useSearchParams()
   const testId = searchParams.get('testId')
   const [email, setEmail] = useState("");
