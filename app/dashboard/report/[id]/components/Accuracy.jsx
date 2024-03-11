@@ -26,7 +26,7 @@ export default function Accuracy({ value, show }) {
           </svg>
 
           <div className="w-full flex items-center justify-center h-full text-3xl font-bold ">
-            {show ? value : "12"}%
+            {show ? value.toFixed(2) : "12"}%
           </div>
         </div>
       </div>

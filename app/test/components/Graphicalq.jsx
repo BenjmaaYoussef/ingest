@@ -52,7 +52,7 @@ export default function Graphicalq({
           <div className="font-bold text-xl">{timerVal}</div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid lg:grid-cols-2 grid-cols-1  gap-2">
         <div className="w-full flex-col h-full shadow-md flex items-center p-5 border border-gray-200 rounded-lg mb-6">
           <h2 className="text-2xl font-bold">{q.name}</h2>
           <img src={q.question_image} alt="" className="w-full " />
