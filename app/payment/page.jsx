@@ -8,6 +8,9 @@ export default async function ({ searchParams }) {
   }
   const supabase = createClient();
   const { data: userdata, error: usererror } = await supabase.auth.getUser();
+  if (!userdata.user) {
+    redirect("/");
+  }
   const { data, error } = await supabase
     .from("tests")
     .select()

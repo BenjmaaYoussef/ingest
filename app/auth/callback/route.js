@@ -30,10 +30,13 @@ export async function GET(request) {
     );
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
+      console.log("HHHHHHHHHH");
       console.log(test);
       const { data: userdata } = await supabase.auth.getUser();
-      console.log(userdata.id);
-      if (test != "undefined") {
+      if (test == "null" || test == "undefined") {
+        return NextResponse.redirect(`${origin}${next}`);
+      } else {
+        console.log("ùùùùùùFiredmmmmm");
         const { data: profile, error: profileError } = await supabase.rpc(
           "add_test_to_profile",
           {
@@ -43,9 +46,8 @@ export async function GET(request) {
         );
         console.log(profileError);
         console.log(profile);
+        return NextResponse.redirect(`${origin}${next}`);
       }
-
-      return NextResponse.redirect(`${origin}${next}`);
     }
   }
 

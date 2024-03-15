@@ -1,5 +1,5 @@
 export default function Report({ answers, qa, show }) {
-  return (
+  return show ? (
     <table className={`w-full ${!show && " blur-lg bg-gray-100"}`}>
       <thead className="border-b-4 border-gray-300">
         <tr>
@@ -45,5 +45,29 @@ export default function Report({ answers, qa, show }) {
         })}
       </tbody>
     </table>
+  ) : (
+    <div className="w-full border border-gray-300 shadow-sm hover:shadow-md rounded-lg p-5 mt-5">
+      <div className="w-full flex flex-col justify-between items-center">
+        <svg
+          className="w-12 h-12 text-blue-600 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width={60}
+          height={60}
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fillRule="evenodd"
+            d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <h2 className="text-lg font-bold">In-Depth report is locked</h2>
+        <p className="text-center">
+          Your selected plan doesn't include this feature
+        </p>
+      </div>
+    </div>
   );
 }

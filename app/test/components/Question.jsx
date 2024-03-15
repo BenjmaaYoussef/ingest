@@ -59,11 +59,11 @@ export default function Question({
           onClick={() => {
             setChoice(1);
           }}
-          className={`w-full cursor-pointer gap-2 shadow-sm h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
+          className={`w-full cursor-pointer gap-2 shadow-sm min-h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
             choice == 1 && " bg-gray-200"
           }`}
         >
-          <div className="border border-black w-8 h-8 flex justify-center items-center rounded-md">
+          <div className="border border-black min-w-8 h-8 flex justify-center items-center rounded-md">
             1
           </div>
           <h2 className="text-lg">{q.choice1}</h2>
@@ -72,11 +72,11 @@ export default function Question({
           onClick={() => {
             setChoice(2);
           }}
-          className={`w-full cursor-pointer gap-2 shadow-sm h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
+          className={`w-full cursor-pointer gap-2 shadow-sm min-h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
             choice == 2 && " bg-gray-200"
           }`}
         >
-          <div className="border border-black w-8 h-8 flex justify-center items-center rounded-md">
+          <div className="border border-black min-w-8 h-8 flex justify-center items-center rounded-md">
             2
           </div>
           <h2 className="text-lg">{q.choice2}</h2>
@@ -85,11 +85,11 @@ export default function Question({
           onClick={() => {
             setChoice(3);
           }}
-          className={`w-full cursor-pointer gap-2 shadow-sm h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
+          className={`w-full cursor-pointer gap-2 shadow-sm min-h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
             choice == 3 && " bg-gray-200"
           }`}
         >
-          <div className="border border-black w-8 h-8 flex justify-center items-center rounded-md">
+          <div className="border border-black min-w-8 h-8 flex justify-center items-center rounded-md">
             3
           </div>
           <h2 className="text-lg">{q.choice3}</h2>
@@ -98,11 +98,11 @@ export default function Question({
           onClick={() => {
             setChoice(4);
           }}
-          className={`w-full cursor-pointer gap-2 shadow-sm h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
+          className={`w-full cursor-pointer gap-2 shadow-sm min-h-20 flex items-center p-5 border border-gray-200 rounded-lg ${
             choice == 4 && " bg-gray-200"
           }`}
         >
-          <div className="border border-black w-8 h-8 flex justify-center items-center rounded-md">
+          <div className="border border-black min-w-8 h-8 flex justify-center items-center rounded-md">
             4
           </div>
           <h2 className="text-lg">{q.choice4}</h2>

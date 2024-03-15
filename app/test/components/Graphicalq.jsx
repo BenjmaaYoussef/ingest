@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Timer } from "timer-node";
 
@@ -55,7 +56,13 @@ export default function Graphicalq({
       <div className="grid lg:grid-cols-2 grid-cols-1  gap-2">
         <div className="w-full flex-col h-full shadow-md flex items-center p-5 border border-gray-200 rounded-lg mb-6">
           <h2 className="text-2xl font-bold">{q.name}</h2>
-          <img src={q.question_image} alt="" className="w-full " />
+          <Image
+            width={300}
+            height={300}
+            src={q.question_image}
+            alt=""
+            className="w-full "
+          />
         </div>
         <div className="flex flex-col gap-2">
           <div
@@ -71,7 +78,7 @@ export default function Graphicalq({
             </div>
             <h2 className="text-lg">
               {" "}
-              <img src={q.choice1} alt="" />{" "}
+              <Image width={150} height={150} src={q.choice1} alt="" />{" "}
             </h2>
           </div>
           <div
@@ -86,7 +93,7 @@ export default function Graphicalq({
               2
             </div>
             <h2 className="text-lg">
-              <img src={q.choice2} alt="" />
+              <Image width={150} height={150} src={q.choice2} alt="" />
             </h2>
           </div>
           <div
@@ -101,7 +108,7 @@ export default function Graphicalq({
               3
             </div>
             <h2 className="text-lg">
-              <img src={q.choice3} alt="" />
+              <Image width={150} height={150} src={q.choice3} alt="" />
             </h2>
           </div>
           <div
@@ -116,7 +123,7 @@ export default function Graphicalq({
               4
             </div>
             <h2 className="text-lg">
-              <img src={q.choice4} alt="" />
+              <Image width={150} height={150} src={q.choice4} alt="" />
             </h2>
           </div>
           <div className="flex justify-center">

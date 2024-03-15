@@ -66,33 +66,13 @@ export default async function ({ params }) {
   return (
     <div>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <div className="flex lg:flex-col lg:justify-center lg:items-center md:justify-between items-end gap-2">
-          <div className="text-4xl font-bold">Summary</div>
-          <div className="flex gap-2">
-            <Link
-              href="/dashboard"
-              className="bg-black px-4 py-2 rounded-lg text-white flex gap-3 hover:bg-gray-700"
-            >
-              <svg
-                className="w-6 h-6 text-white dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M20 10H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM9 13v-1h6v1c0 .6-.4 1-1 1h-4a1 1 0 0 1-1-1Z"
-                  clipRule="evenodd"
-                />
-                <path d="M2 6c0-1.1.9-2 2-2h16a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Z" />
-              </svg>
-              Back to dashboard
-            </Link>
+        <div className="flex flex-col lg:justify-center lg:items-center md:justify-between items-end gap-2">
+          <div className="text-4xl font-bold text-center w-full">Summary</div>
+          <div className="flex gap-2 w-full">
             {plan.indepth && (
               <Link
                 href="/dashboard"
-                className="bg-black px-4 py-2 rounded-lg text-white flex gap-3 hover:bg-gray-700"
+                className="bg-black px-4 py-2 rounded-lg text-white w-full justify-center flex gap-3 hover:bg-gray-700"
               >
                 <svg
                   className="w-6 h-6 text-white dark:text-white"

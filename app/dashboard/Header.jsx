@@ -1,7 +1,11 @@
+"use client";
 import Link from "next/link";
 import LogoutBtn from "./LogoutBtn";
+import { useState } from "react";
 
 export default function () {
+  const [toggled, setToggled] = useState(false);
+
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0">
       <nav
@@ -23,6 +27,7 @@ export default function () {
               data-hs-collapse="#navbar-collapse-with-animation"
               aria-controls="navbar-collapse-with-animation"
               aria-label="Toggle navigation"
+              onClick={() => setToggled(!toggled)}
             >
               <svg
                 className="hs-collapse-open:hidden flex-shrink-0 size-4"
@@ -60,9 +65,11 @@ export default function () {
         </div>
         <div
           id="navbar-collapse-with-animation"
-          className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          className={`hs-collapse ${
+            toggled && "hidden"
+          } overflow-hidden transition-all duration-300 basis-full grow sm:block`}
         >
-          <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
+          <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
             <Link
               className="font-medium text-white sm:py-6"
               href="/test"
