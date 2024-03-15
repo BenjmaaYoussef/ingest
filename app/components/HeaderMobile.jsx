@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 function HeaderMobile() {
-  const [toggled, setToggled] = useState(false);
+  const [toggled, setToggled] = useState(true);
   return (
     <div>
       <div className="flex justify-between">

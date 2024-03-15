@@ -23,29 +23,29 @@ export default async function Page() {
                 style={{ display: "none" }}
               />
               <Image
-                width={150}
-                height={150}
+                width={100}
+                height={100}
                 priority={true}
                 src={qe.choice1}
                 style={{ display: "none" }}
               />
               <Image
-                width={150}
-                height={150}
+                width={100}
+                height={100}
                 priority={true}
                 src={qe.choice2}
                 style={{ display: "none" }}
               />
               <Image
-                width={150}
-                height={150}
+                width={100}
+                height={100}
                 priority={true}
                 src={qe.choice3}
                 style={{ display: "none" }}
               />
               <Image
-                width={150}
-                height={150}
+                width={100}
+                height={100}
                 priority={true}
                 src={qe.choice4}
                 style={{ display: "none" }}

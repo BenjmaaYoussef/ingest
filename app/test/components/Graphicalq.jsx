@@ -78,7 +78,7 @@ export default function Graphicalq({
             </div>
             <h2 className="text-lg">
               {" "}
-              <Image width={150} height={150} src={q.choice1} alt="" />{" "}
+              <Image width={100} height={100} src={q.choice1} alt="" />{" "}
             </h2>
           </div>
           <div
@@ -93,7 +93,7 @@ export default function Graphicalq({
               2
             </div>
             <h2 className="text-lg">
-              <Image width={150} height={150} src={q.choice2} alt="" />
+              <Image width={100} height={100} src={q.choice2} alt="" />
             </h2>
           </div>
           <div
@@ -108,7 +108,7 @@ export default function Graphicalq({
               3
             </div>
             <h2 className="text-lg">
-              <Image width={150} height={150} src={q.choice3} alt="" />
+              <Image width={100} height={100} src={q.choice3} alt="" />
             </h2>
           </div>
           <div
@@ -123,7 +123,7 @@ export default function Graphicalq({
               4
             </div>
             <h2 className="text-lg">
-              <Image width={150} height={150} src={q.choice4} alt="" />
+              <Image width={100} height={100} src={q.choice4} alt="" />
             </h2>
           </div>
           <div className="flex justify-center">

@@ -119,7 +119,7 @@ export default async function Page({ searchParams }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center p-5">
+      <div className="flex flex-col justify-center p-8">
         <GoogleBtn />
       </div>
     </div>

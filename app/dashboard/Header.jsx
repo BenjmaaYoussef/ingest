@@ -4,7 +4,7 @@ import LogoutBtn from "./LogoutBtn";
 import { useState } from "react";
 
 export default function () {
-  const [toggled, setToggled] = useState(false);
+  const [toggled, setToggled] = useState(true);
 
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0">
