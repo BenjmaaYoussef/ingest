@@ -83,6 +83,12 @@ function HeaderMobile() {
           >
             Help
           </Link>
+          <Link
+            className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+            href="/dashboard"
+          >
+            Dashboard
+          </Link>
         </div>
       </div>
     </div>

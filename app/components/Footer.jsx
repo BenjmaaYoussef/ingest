@@ -37,18 +37,6 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <div className="mt-3 sm:hidden">
-              <a
-                className="flex-none text-xl font-semibold dark:text-white"
-                href="#"
-                aria-label="Brand"
-              >
-                Brand
-              </a>
-              <p className="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                © 2022 Preline.
-              </p>
-            </div>
             {/* Social Brands */}
             <div className="space-x-4">
               <a
