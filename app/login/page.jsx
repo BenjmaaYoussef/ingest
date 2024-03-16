@@ -50,10 +50,10 @@ export default async function Page({ searchParams }) {
               IQ Test Academy
             </h1>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 text-white">
             <div className="flex items-center gap-3">
               <svg
-                className="w-8 h-8 text-gray-800 dark:text-white"
+                className="w-8 h-8  dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
@@ -76,7 +76,7 @@ export default async function Page({ searchParams }) {
             </div>
             <div className="flex items-center gap-3">
               <svg
-                className="w-8 h-8 text-gray-800 dark:text-white"
+                className="w-8 h-8  dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
@@ -92,12 +92,12 @@ export default async function Page({ searchParams }) {
               </svg>
               <div>
                 <div className="text-xl font-bold">Ignite Your Intellect</div>
-                <div>Sign in for a Journey of Self-Discovery</div>
+                <div>A Journey of Self-Discovery</div>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <svg
-                className="w-8 h-8 text-gray-800 dark:text-white"
+                className="w-8 h-8  dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width={24}
