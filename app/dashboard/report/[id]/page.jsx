@@ -61,7 +61,7 @@ export default async function ({ params }) {
       score.correct * correctAnswerPoints +
       score.incorrect * incorrectAnswerPoints;
 
-    return totalScore;
+    return totalScore + 50;
   }
   const { id } = params;
   const supabase = createClient();
@@ -107,11 +107,10 @@ export default async function ({ params }) {
   } else {
     redirect("/");
   }
-  // const finalRes = calculateIQ({
-  //   correct: result,
-  //   incorrect: Object.keys(test.answers).length - result,
-  // });
-  const finalRes = 50;
+  const finalRes = calculateIQ({
+    correct: result,
+    incorrect: Object.keys(test.answers).length - result,
+  });
   return (
     <div>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
