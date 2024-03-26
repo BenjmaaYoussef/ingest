@@ -15,7 +15,7 @@ export default function () {
         <div className="flex items-center justify-between">
           <Link
             className="flex-none text-xl font-semibold text-white"
-            href="/"
+            href="/dashboard"
             aria-label="Brand"
           >
             IQ Test Academy

@@ -6,8 +6,53 @@ import Results from "./components/Results";
 import Accuracy from "./components/Accuracy";
 import TimeTaken from "./components/TimeTaken";
 import Report from "./components/Report";
-
+import Buttons from "./components/Buttons";
+import PrintBtn from "./components/PrintBtn";
+import { DonutChartUsageExample } from "./components/TypeChart";
+import { CorrectChartUsageExample } from "./components/CorrectChart";
 export default async function ({ params }) {
+  const data = [
+    {
+      minIq: 40,
+      maxIq: 55,
+      percentile: 0.013,
+    },
+    {
+      minIq: 55,
+      maxIq: 70,
+      percentile: 2.14,
+    },
+    {
+      minIq: 70,
+      maxIq: 85,
+      percentile: 13.6,
+    },
+    {
+      minIq: 85,
+      maxIq: 100,
+      percentile: 34.13,
+    },
+    {
+      minIq: 100,
+      maxIq: 115,
+      percentile: 34.13,
+    },
+    {
+      minIq: 115,
+      maxIq: 130,
+      percentile: 13.6,
+    },
+    {
+      minIq: 130,
+      maxIq: 135,
+      percentile: 2.14,
+    },
+    {
+      minIq: 135,
+      maxIq: 200,
+      percentile: 0.013,
+    },
+  ];
   function calculateIQ(score) {
     const correctAnswerPoints = 5;
     const incorrectAnswerPoints = -1;
@@ -62,48 +107,41 @@ export default async function ({ params }) {
   } else {
     redirect("/");
   }
-
+  // const finalRes = calculateIQ({
+  //   correct: result,
+  //   incorrect: Object.keys(test.answers).length - result,
+  // });
+  const finalRes = 50;
   return (
     <div>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div className="flex flex-col lg:justify-center lg:items-center md:justify-between items-end gap-2">
           <div className="text-4xl font-bold text-center w-full">Summary</div>
-          <div className="flex gap-2 w-full">
-            {plan.indepth && (
-              <Link
-                href="/dashboard"
-                className="bg-black px-4 py-2 rounded-lg text-white w-full justify-center flex gap-3 hover:bg-gray-700"
-              >
-                <svg
-                  className="w-6 h-6 text-white dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M8 3a2 2 0 0 0-2 2v3h12V5a2 2 0 0 0-2-2H8Zm-3 7a2 2 0 0 0-2 2v5c0 1.1.9 2 2 2h1v-4c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v4h1a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5Zm4 11a1 1 0 0 1-1-1v-4h8v4c0 .6-.4 1-1 1H9Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Print report
-              </Link>
-            )}
+          <div className="flex gap-2 w-full no-print">
+            {plan.indepth && <PrintBtn />}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-2 print:grid-cols-3">
           <Results
-            value={calculateIQ({
-              correct: result,
-              incorrect: Object.keys(test.answers).length - result,
-            })}
+            //to change
+            value={finalRes}
           />
           <Accuracy
             value={(result / Object.keys(test.answers).length) * 100}
             show={plan.simplified == true}
           />
           <TimeTaken value={test.time_taken} show={plan.simplified == true} />
+        </div>
+        <div className="grid grid-cols-1 mt-4 gap-2">
+          {data.map((sin) => {
+            if (finalRes > sin.minIq && finalRes < sin.maxIq) {
+              return (
+                <div className="bg-blue-600 text-white rounded-full text-center font-bold text-sm py-2">
+                  Only {sin.percentile}% in the world share the same IQ as you!
+                </div>
+              );
+            }
+          })}
         </div>
         <div>
           <Report answers={test.answers} qa={qa} show={plan.indepth == true} />

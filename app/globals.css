@@ -50,3 +50,15 @@
     transform: scale(2.5);
   }
 }
+
+@media print {
+  header {
+    display: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  div {
+    break-inside: avoid-page;
+  }
+}
