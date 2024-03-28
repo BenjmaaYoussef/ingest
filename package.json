@@ -23,6 +23,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.0",
     "react-hot-toast": "^2.4.1",
+    "react-multi-carousel": "^2.8.4",
     "react-share": "^5.1.0",
     "stripe": "^14.20.0",
     "timer-node": "^5.0.7"

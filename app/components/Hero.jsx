@@ -1,14 +1,19 @@
 import Link from "next/link";
 
 export default function Hero() {
+  const d = new Date();
   return (
     <div className="relative z-10">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
         <div className="max-w-2xl text-center mx-auto">
           <div className="bg-gray-100 py-2 rounded-full flex gap-3 items-center justify-center text-sm font-medium ">
             <div className="dot"></div>
-            {Math.floor(Math.random() * 500).toString()} people are taking the
-            test right now
+            {(
+              d.getHours() +
+              d.getMinutes() +
+              parseInt(Math.random() * 10)
+            ).toString()}{" "}
+            people are taking the test right now
           </div>
           {/* Title */}
           <div className="mt-5 max-w-2xl">

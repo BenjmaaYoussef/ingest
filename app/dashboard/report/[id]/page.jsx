@@ -6,10 +6,11 @@ import Results from "./components/Results";
 import Accuracy from "./components/Accuracy";
 import TimeTaken from "./components/TimeTaken";
 import Report from "./components/Report";
-import Buttons from "./components/Buttons";
 import PrintBtn from "./components/PrintBtn";
 import { DonutChartUsageExample } from "./components/TypeChart";
 import { CorrectChartUsageExample } from "./components/CorrectChart";
+import FBbtn from "./components/FBbtn";
+import Twiiterbtn from "./components/Twitterbtn";
 export default async function ({ params }) {
   const data = [
     {
@@ -116,8 +117,10 @@ export default async function ({ params }) {
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div className="flex flex-col lg:justify-center lg:items-center md:justify-between items-end gap-2">
           <div className="text-4xl font-bold text-center w-full">Summary</div>
-          <div className="flex gap-2 w-full no-print">
+          <div className="grid grid-cols-8 gap-2 w-full no-print">
             {plan.indepth && <PrintBtn />}
+            <FBbtn finalRes={finalRes} />
+            <Twiiterbtn finalRes={finalRes} />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-2 print:grid-cols-3">
