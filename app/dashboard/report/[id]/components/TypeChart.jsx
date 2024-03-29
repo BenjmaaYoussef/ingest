@@ -1,4 +1,5 @@
 "use client";
+
 import Chart from "react-apexcharts";
 
 export function DonutChartUsageExample({ answers, qa }) {
@@ -18,6 +19,7 @@ export function DonutChartUsageExample({ answers, qa }) {
       <h2 className="text-center text-lg mb-3 font-semibold">
         Questions Types
       </h2>
+
       <Chart
         className="flex justify-center h-72 items-center"
         options={{ labels: Object.keys(every) }}

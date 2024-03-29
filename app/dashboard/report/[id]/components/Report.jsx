@@ -1,6 +1,5 @@
 import { CorrectChartUsageExample } from "./CorrectChart";
 import { DonutChartUsageExample } from "./TypeChart";
-
 export default function Report({ answers, qa, show }) {
   return show ? (
     <>

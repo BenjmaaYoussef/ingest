@@ -23,6 +23,7 @@ export function CorrectChartUsageExample({ answers, qa }) {
       <h2 className="text-center text-lg mb-3 font-semibold">
         Correct Questions
       </h2>
+
       <Chart
         className="flex justify-center h-72 items-center"
         options={{
