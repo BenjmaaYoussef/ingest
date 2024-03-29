@@ -2060,7 +2060,10 @@ export default function () {
             single.AverageIQ_ICI2017Grade
           ) {
             return (
-              <div className="flex flex-col justify-center items-center gap-2">
+              <div
+                key={single.country}
+                className="flex flex-col justify-center items-center gap-2"
+              >
                 <img
                   src={countriesFlags[single.country]["normal"]}
                   className="rounded-lg w-40 aspect-video shadow-lg"

@@ -34,7 +34,7 @@ export default function FBbtn({ finalRes }) {
         finalRes +
         "IQ !"
       }
-      className=" h-full  col-span-4 md:col-span-1"
+      className=" col-span-4 md:col-span-1"
     >
       <button className="bg-white h-full border-black border-2 px-4 py-2 rounded-lg text-white w-full justify-center flex gap-3 hover:bg-gray-200">
         <div className="text-black md:hidden">Share on </div>
