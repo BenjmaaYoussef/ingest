@@ -13,19 +13,6 @@ import Head from "next/head";
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>
-          IQ Test Academy | Unlock Your Intelligence: Premium Online IQ Tests
-        </title>
-        <meta
-          name="description"
-          content="Discover your cognitive potential with our premium online IQ tests. Gain insights into your strengths and areas for growth with detailed results. Take the first step towards self-discovery today!"
-        />
-        <meta
-          property="og:image"
-          content="https://static.vecteezy.com/system/resources/previews/006/408/298/original/brain-icon-isolated-on-white-background-brain-icon-similar-design-illustration-brain-icon-symbol-for-logo-web-app-and-template-vector.jpg"
-        />
-      </Head>
       <div className="relative overflow-hidden">
         <div
           aria-hidden="true"
