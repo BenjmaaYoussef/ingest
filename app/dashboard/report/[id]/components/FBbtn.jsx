@@ -34,10 +34,10 @@ export default function FBbtn({ finalRes }) {
         finalRes +
         "IQ !"
       }
-      className=" col-span-4 md:col-span-1"
+      className=" col-span-4 grow md:col-span-1"
     >
-      <button className="bg-white h-full border-black border-2 px-4 py-2 rounded-lg text-white w-full justify-center flex gap-3 hover:bg-gray-200">
-        <div className="text-black md:hidden">Share on </div>
+      <div className="bg-white  h-full border-black border-2 px-4 py-2 rounded-lg text-white w-full justify-center flex gap-3 hover:bg-gray-200">
+        <div className="text-black">Share on </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -56,7 +56,7 @@ export default function FBbtn({ finalRes }) {
             />
           </g>
         </svg>
-      </button>
+      </div>
     </FacebookShareButton>
   );
 }

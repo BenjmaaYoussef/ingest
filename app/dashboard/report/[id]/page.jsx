@@ -117,7 +117,7 @@ export default async function ({ params }) {
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div className="flex flex-col lg:justify-center lg:items-center md:justify-between items-end gap-2">
           <div className="text-4xl font-bold text-center w-full">Summary</div>
-          <div className="grid grid-cols-8 gap-2 w-full no-print">
+          <div className="flex gap-2 w-full no-print flex-wrap">
             {plan.indepth && <PrintBtn />}
             <FBbtn finalRes={finalRes} />
             <Twiiterbtn finalRes={finalRes} />

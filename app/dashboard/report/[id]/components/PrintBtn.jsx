@@ -3,7 +3,7 @@ export default function PrintBtn() {
   return (
     <button
       onClick={() => print()}
-      className="bg-black px-4 py-2 items-center rounded-lg text-white w-full justify-center flex gap-3 hover:bg-gray-700 col-span-8 md:col-span-6"
+      className="bg-black grow px-4 py-2 rounded-lg flex justify-center items-center text-white w-full gap-3 hover:bg-gray-700 col-span-8 md:col-span-6"
     >
       <svg
         className="w-6 h-6 text-white dark:text-white"
