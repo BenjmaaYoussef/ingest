@@ -1,6 +1,8 @@
 import { CorrectChartUsageExample } from "./CorrectChart";
 import { DonutChartUsageExample } from "./TypeChart";
 export default function Report({ answers, qa, show }) {
+  console.log(qa);
+  console.log(answers);
   return show ? (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-2">
@@ -25,28 +27,49 @@ export default function Report({ answers, qa, show }) {
             const personal = qa.find((x) => x.id === parseInt(key))[
               "choice" + answers[key]
             ];
+            const currentQ = qa.find((x) => x.id === parseInt(key));
             return (
-              <tr className="hover:bg-gray-50 border-b-2 border-gray-300 my-4">
+              <tr
+                key={index}
+                className="hover:bg-gray-50 border-b-2 border-gray-300 my-4"
+              >
                 <td>{index + 1}</td>
                 <td className="py-1">
                   <div className="text-gray-500 font-bold">
                     {qa.find((x) => x.id === parseInt(key)).name}
+                    {qa.find((x) => x.id === parseInt(key)).question_image && (
+                      <img
+                        src={
+                          qa.find((x) => x.id === parseInt(key)).question_image
+                        }
+                        alt=""
+                        width={300}
+                      />
+                    )}
                   </div>
                   <hr className="my-1 mr-4" />
                   <div>
-                    {qa.find((x) => x.id === parseInt(key)).question_image ? (
-                      <img src={correct} alt="" />
-                    ) : (
-                      correct
-                    )}
+                    {currentQ.question_image &&
+                      currentQ.answerType == "Graphical answer" && (
+                        <img src={currentQ["choice" + currentQ.answer]} />
+                      )}
+                    {currentQ.question_image &&
+                      currentQ.answerType != "Graphical answer" &&
+                      currentQ["choice" + currentQ.answer]}
+                    {!currentQ.question_image &&
+                      currentQ["choice" + currentQ.answer]}
                   </div>
                 </td>
                 <td>
-                  {qa.find((x) => x.id === parseInt(key)).question_image ? (
-                    <img src={personal} alt="" />
-                  ) : (
-                    personal
-                  )}
+                  {currentQ.question_image &&
+                    currentQ.answerType == "Graphical answer" && (
+                      <img src={currentQ["choice" + answers[currentQ.id]]} />
+                    )}
+                  {currentQ.question_image &&
+                    currentQ.answerType != "Graphical answer" &&
+                    currentQ["choice" + answers[currentQ.id]]}
+                  {!currentQ.question_image &&
+                    currentQ["choice" + answers[currentQ.id]]}
                 </td>
               </tr>
             );

@@ -12,10 +12,15 @@ export function CorrectChartUsageExample({ answers, qa }) {
       "choice" + answers[key]
     ];
     const found = qa.find((x) => x.id === parseInt(key)).type;
+    console.log(every);
     if (correct == personal) {
       every[found] = every[found] + 1;
     } else {
-      every[found] = 1;
+      if (every[found]) {
+        every[found] = every[found];
+      } else {
+        every[found] = 0;
+      }
     }
   });
   return (
