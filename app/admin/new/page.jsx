@@ -15,6 +15,7 @@ export default function Page() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
     const { error } = await supabase.from("questions").insert(data);
     if (!error) {
       router.push("/admin");

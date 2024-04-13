@@ -10,74 +10,115 @@ export default function Page() {
   const supabase = createClient();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [answerType, setAnswerType] = useState("Graphical answer");
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      setIsLoading(true);
-      const { data: newQuest, error: addQuestError } = await supabase
-        .from("questions")
-        .insert({
-          type: "Graphical question",
-          name: data.name,
-          status: data.status,
-          answer: data.answer,
-        })
-        .select();
-      console.log(newQuest);
-      const { data: question_image, error: questionError } =
-        await supabase.storage
+      if (answerType == "Graphical answer") {
+        setIsLoading(true);
+        const { data: newQuest, error: addQuestError } = await supabase
+          .from("questions")
+          .insert({
+            type: "Graphical question",
+            name: data.name,
+            status: data.status,
+            answer: data.answer,
+            answerType,
+          })
+          .select();
+        console.log(newQuest);
+        const { data: question_image, error: questionError } =
+          await supabase.storage
+            .from("graphical")
+            .upload(
+              "/" + newQuest[0].id + "/question.png",
+              data.questionimage[0]
+            );
+        const { data: choice1, error: choiceError1 } = await supabase.storage
           .from("graphical")
-          .upload(
-            "/" + newQuest[0].id + "/question.png",
-            data.questionimage[0]
-          );
-      const { data: choice1, error: choiceError1 } = await supabase.storage
-        .from("graphical")
-        .upload("/" + newQuest[0].id + "/1.png", data.choice1[0]);
-      const { data: choice2, erro: choiceError2 } = await supabase.storage
-        .from("graphical")
-        .upload("/" + newQuest[0].id + "/2.png", data.choice2[0]);
-      const { data: choice3, erro: choiceError3 } = await supabase.storage
-        .from("graphical")
-        .upload("/" + newQuest[0].id + "/3.png", data.choice3[0]);
-      const { data: choice4, erro: choiceError4 } = await supabase.storage
-        .from("graphical")
-        .upload("/" + newQuest[0].id + "/4.png", data.choice4[0]);
+          .upload("/" + newQuest[0].id + "/1.png", data.choice1[0]);
+        const { data: choice2, erro: choiceError2 } = await supabase.storage
+          .from("graphical")
+          .upload("/" + newQuest[0].id + "/2.png", data.choice2[0]);
+        const { data: choice3, erro: choiceError3 } = await supabase.storage
+          .from("graphical")
+          .upload("/" + newQuest[0].id + "/3.png", data.choice3[0]);
+        const { data: choice4, erro: choiceError4 } = await supabase.storage
+          .from("graphical")
+          .upload("/" + newQuest[0].id + "/4.png", data.choice4[0]);
 
-      const { data: questionLink } = supabase.storage
-        .from("graphical")
-        .getPublicUrl(newQuest[0].id + "/question.png");
-      const { data: choiceLink1 } = supabase.storage
-        .from("graphical")
-        .getPublicUrl(newQuest[0].id + "/1.png");
-      const { data: choiceLink2 } = supabase.storage
-        .from("graphical")
-        .getPublicUrl(newQuest[0].id + "/2.png");
+        const { data: questionLink } = supabase.storage
+          .from("graphical")
+          .getPublicUrl(newQuest[0].id + "/question.png");
+        const { data: choiceLink1 } = supabase.storage
+          .from("graphical")
+          .getPublicUrl(newQuest[0].id + "/1.png");
+        const { data: choiceLink2 } = supabase.storage
+          .from("graphical")
+          .getPublicUrl(newQuest[0].id + "/2.png");
 
-      const { data: choiceLink3 } = supabase.storage
-        .from("graphical")
-        .getPublicUrl(newQuest[0].id + "/3.png");
+        const { data: choiceLink3 } = supabase.storage
+          .from("graphical")
+          .getPublicUrl(newQuest[0].id + "/3.png");
 
-      const { data: choiceLink4 } = supabase.storage
-        .from("graphical")
-        .getPublicUrl(newQuest[0].id + "/4.png");
+        const { data: choiceLink4 } = supabase.storage
+          .from("graphical")
+          .getPublicUrl(newQuest[0].id + "/4.png");
 
-      const { error } = await supabase
-        .from("questions")
-        .update({
-          question_image: questionLink.publicUrl,
-          choice1: choiceLink1.publicUrl,
-          choice2: choiceLink2.publicUrl,
-          choice3: choiceLink3.publicUrl,
-          choice4: choiceLink4.publicUrl,
-        })
-        .eq("id", newQuest[0].id);
-      setIsLoading(false);
+        const { error } = await supabase
+          .from("questions")
+          .update({
+            question_image: questionLink.publicUrl,
+            choice1: choiceLink1.publicUrl,
+            choice2: choiceLink2.publicUrl,
+            choice3: choiceLink3.publicUrl,
+            choice4: choiceLink4.publicUrl,
+          })
+          .eq("id", newQuest[0].id);
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+        const { data: newQuest, error: addQuestError } = await supabase
+          .from("questions")
+          .insert({
+            type: "Graphical question",
+            name: data.name,
+            status: data.status,
+            answer: data.answer,
+            answerType,
+            choice1: data.choice1,
+            choice2: data.choice2,
+            choice3: data.choice3,
+            choice4: data.choice4,
+          })
+          .select();
+        const { data: question_image, error: questionError } =
+          await supabase.storage
+            .from("graphical")
+            .upload(
+              "/" + newQuest[0].id + "/question.png",
+              data.questionimage[0]
+            );
+        const { data: questionLink } = supabase.storage
+          .from("graphical")
+          .getPublicUrl(newQuest[0].id + "/question.png");
+        const { error } = await supabase
+          .from("questions")
+          .update({
+            question_image: questionLink.publicUrl,
+          })
+          .eq("id", newQuest[0].id);
+        if (addQuestError || error || questionError) {
+          throw new Error(addQuestError);
+        }
+        setIsLoading(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -197,138 +238,299 @@ export default function Page() {
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+            <div>
               <div>
                 <label
                   htmlFor="question"
                   className="block text-sm font-medium mb-2 dark:text-white"
                 >
-                  First choice:
+                  Answer Type
                 </label>
                 <div className="relative">
-                  <input
-                    type="file"
-                    name="choice1"
-                    id="choice1"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
-    file:bg-gray-50 file:border-0
-    file:me-4
-    file:py-3 file:px-4
-    dark:file:bg-gray-700 dark:file:text-gray-400"
-                    {...register("choice1", { required: true })}
-                  />
+                  <select
+                    className={
+                      errors.answertype
+                        ? `py-3 px-4 block w-full border border-red-500 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400`
+                        : "py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    }
+                    name="answertype"
+                    {...register("answertype")}
+                    onChange={(e) => setAnswerType(e.target.value)}
+                    required
+                  >
+                    <option value="Graphical answer">Graphical answer</option>
+                    <option value="Textual answer">Textual answer</option>
+                  </select>
 
-                  {errors.choice1 && (
+                  {errors.answertype && (
                     <>
                       <p
                         className="text-sm text-red-600 mt-2"
                         id="hs-validation-name-error-helper"
                       >
-                        Please upload a choice
-                      </p>
-                    </>
-                  )}
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="question"
-                  className="block text-sm font-medium mb-2 dark:text-white"
-                >
-                  Second choice:
-                </label>
-                <div className="relative">
-                  <input
-                    type="file"
-                    name="choice2"
-                    id="choice2"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
-    file:bg-gray-50 file:border-0
-    file:me-4
-    file:py-3 file:px-4
-    dark:file:bg-gray-700 dark:file:text-gray-400"
-                    {...register("choice2", { required: true })}
-                  />
-
-                  {errors.choice2 && (
-                    <>
-                      <p
-                        className="text-sm text-red-600 mt-2"
-                        id="hs-validation-name-error-helper"
-                      >
-                        Please upload a choice
+                        Please enter an answer type
                       </p>
                     </>
                   )}
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-              <div>
-                <label
-                  htmlFor="question"
-                  className="block text-sm font-medium mb-2 dark:text-white"
-                >
-                  Third choice:
-                </label>
-                <div className="relative">
-                  <input
-                    type="file"
-                    name="choice3"
-                    id="choice3"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
+            {answerType == "Graphical answer" ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      First choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        name="choice1"
+                        id="choice1"
+                        className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
     file:bg-gray-50 file:border-0
     file:me-4
     file:py-3 file:px-4
     dark:file:bg-gray-700 dark:file:text-gray-400"
-                    {...register("choice3", { required: true })}
-                  />
+                        {...register("choice1", { required: true })}
+                      />
 
-                  {errors.choice3 && (
-                    <>
-                      <p
-                        className="text-sm text-red-600 mt-2"
-                        id="hs-validation-name-error-helper"
-                      >
-                        Please upload a choice
-                      </p>
-                    </>
-                  )}
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="question"
-                  className="block text-sm font-medium mb-2 dark:text-white"
-                >
-                  Fourth choice:
-                </label>
-                <div className="relative">
-                  <input
-                    type="file"
-                    name="choice4"
-                    id="choice4"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
+                      {errors.choice1 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      Second choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        name="choice2"
+                        id="choice2"
+                        className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
     file:bg-gray-50 file:border-0
     file:me-4
     file:py-3 file:px-4
     dark:file:bg-gray-700 dark:file:text-gray-400"
-                    {...register("choice4", { required: true })}
-                  />
+                        {...register("choice2", { required: true })}
+                      />
 
-                  {errors.choice4 && (
-                    <>
-                      <p
-                        className="text-sm text-red-600 mt-2"
-                        id="hs-validation-name-error-helper"
-                      >
-                        Please upload a choice
-                      </p>
-                    </>
-                  )}
+                      {errors.choice2 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      Third choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        name="choice3"
+                        id="choice3"
+                        className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
+    file:bg-gray-50 file:border-0
+    file:me-4
+    file:py-3 file:px-4
+    dark:file:bg-gray-700 dark:file:text-gray-400"
+                        {...register("choice3", { required: true })}
+                      />
+
+                      {errors.choice3 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      Fourth choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        name="choice4"
+                        id="choice4"
+                        className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
+    file:bg-gray-50 file:border-0
+    file:me-4
+    file:py-3 file:px-4
+    dark:file:bg-gray-700 dark:file:text-gray-400"
+                        {...register("choice4", { required: true })}
+                      />
+
+                      {errors.choice4 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      First choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="choice1"
+                        id="choice1"
+                        className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        {...register("choice1", { required: true })}
+                      />
+
+                      {errors.choice1 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      Second choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="choice2"
+                        id="choice2"
+                        className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        {...register("choice2", { required: true })}
+                      />
+
+                      {errors.choice2 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      Third choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="choice3"
+                        id="choice3"
+                        className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        {...register("choice3", { required: true })}
+                      />
+
+                      {errors.choice3 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="question"
+                      className="block text-sm font-medium mb-2 dark:text-white"
+                    >
+                      Fourth choice:
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="choice4"
+                        id="choice4"
+                        className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        {...register("choice4", { required: true })}
+                      />
+
+                      {errors.choice4 && (
+                        <>
+                          <p
+                            className="text-sm text-red-600 mt-2"
+                            id="hs-validation-name-error-helper"
+                          >
+                            Please upload a choice
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
               <div>
                 <label

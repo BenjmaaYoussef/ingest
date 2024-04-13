@@ -77,8 +77,11 @@ export default function Graphicalq({
               1
             </div>
             <h2 className="text-lg">
-              {" "}
-              <Image width={100} height={100} src={q.choice1} alt="" />{" "}
+              {q.answerType == "Graphical answer" ? (
+                <Image width={100} height={100} src={q.choice1} alt="" />
+              ) : (
+                q.choice1
+              )}
             </h2>
           </div>
           <div
@@ -93,7 +96,11 @@ export default function Graphicalq({
               2
             </div>
             <h2 className="text-lg">
-              <Image width={100} height={100} src={q.choice2} alt="" />
+              {q.answerType == "Graphical answer" ? (
+                <Image width={100} height={100} src={q.choice2} alt="" />
+              ) : (
+                q.choice2
+              )}
             </h2>
           </div>
           <div
@@ -108,7 +115,11 @@ export default function Graphicalq({
               3
             </div>
             <h2 className="text-lg">
-              <Image width={100} height={100} src={q.choice3} alt="" />
+              {q.answerType == "Graphical answer" ? (
+                <Image width={100} height={100} src={q.choice3} alt="" />
+              ) : (
+                q.choice3
+              )}
             </h2>
           </div>
           <div
@@ -123,7 +134,11 @@ export default function Graphicalq({
               4
             </div>
             <h2 className="text-lg">
-              <Image width={100} height={100} src={q.choice4} alt="" />
+              {q.answerType == "Graphical answer" ? (
+                <Image width={100} height={100} src={q.choice4} alt="" />
+              ) : (
+                q.choice4
+              )}
             </h2>
           </div>
           <div className="flex justify-center">

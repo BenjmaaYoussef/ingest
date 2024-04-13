@@ -137,27 +137,49 @@ export default function ({ questionList }) {
             Start by creating a new question
           </p>
           <div className="mt-5 grid sm:flex gap-2">
-            <Link
-              className="py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              href={"/new"}
-            >
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
+              <button
+                id="hs-dropdown"
+                type="button"
+                onClick={() => setShowDrop(!showDrop)}
+                className="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-blue-600 text-white shadow-sm hover:bg-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
               >
-                <path d="M5 12h14" />
-                <path d="M12 5v14" />
-              </svg>
-              Create
-            </Link>
+                Create new
+                <svg
+                  className="flex-shrink-0 size-3"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={16}
+                  height={16}
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+              <div
+                className="hs-dropdown-menu w-30 mt-12 absolute transition-[opacity,margin] duration hs-dropdown-open:opacity-100 z-10 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700"
+                aria-labelledby="hs-dropdown"
+                hidden={showDrop == true}
+              >
+                <Link
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+                  href="/admin/new/graphical"
+                >
+                  Graphical
+                </Link>
+                <Link
+                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+                  href="/admin/new"
+                >
+                  Textual
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
@@ -179,7 +201,7 @@ export default function ({ questionList }) {
                 className="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start"
               >
                 <div className="flex items-center gap-x-2">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                  <span className="px-2 text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
                     Question
                   </span>
                 </div>
@@ -223,16 +245,16 @@ export default function ({ questionList }) {
                     </label>
                   </div>
                 </td>
-                <td className="size-px">
+                <td className="px-2">
                   <div className="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 w-full">
                     <div className="flex items-center gap-x-3">
                       <div className="">
                         <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
                           {q.name
-                            .split("", 120)
+                            .split("", 80)
                             .reduce(
                               (o, c) =>
-                                o.length === 119 ? `${o}${c}...` : `${o}${c}`,
+                                o.length === 79 ? `${o}${c}...` : `${o}${c}`,
                               ""
                             )}
                         </p>
@@ -240,7 +262,7 @@ export default function ({ questionList }) {
                     </div>
                   </div>
                 </td>
-                <td className="h-px w-72 whitespace-nowrap">
+                <td className="h-px w-42 whitespace-nowrap">
                   <div className="px-6 py-3">
                     <span className="block text-sm text-gray-500">
                       {q.type}
@@ -324,52 +346,6 @@ export default function ({ questionList }) {
             </span>{" "}
             results
           </p>
-        </div>
-        <div>
-          <div className="inline-flex gap-x-2">
-            <button
-              type="button"
-              className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              disabled=""
-            >
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-              Prev
-            </button>
-            <button
-              type="button"
-              className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              disabled=""
-            >
-              Next
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
       {/* End Footer */}
